@@ -1,0 +1,83 @@
+@use '@angular/material' as mat;
+@import "~bootstrap/dist/css/bootstrap.css";
+
+@include mat.core();
+
+$dark-primary-text: rgba(black, 0.87);
+$dark-secondary-text: rgba(black, 0.54);
+$dark-disabled-text: rgba(black, 0.38);
+$dark-dividers: rgba(black, 0.12);
+$dark-focused: rgba(black, 0.12);
+$light-primary-text: white;
+$light-secondary-text: rgba(white, 0.7);
+$light-disabled-text: rgba(white, 0.5);
+$light-dividers: rgba(white, 0.12);
+$light-focused: rgba(white, 0.12);
+
+$ohio-green: (
+    50: #dff0ed,
+    100: #b0dbd2,
+    200: #7ec4b5,
+    300: #4dac99,
+    400: #2b9a85,
+    500: #108971,
+    600: #0d7d66,
+    700: #0a6d57,
+    800: #065d4a,
+    900: #024230,
+    contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $dark-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $dark-primary-text,
+  )
+);
+
+$second-color: (
+    50: #ffddd3,
+    100: #f5b9b4,
+    200: #d3918f,
+    300: #b16b69,
+    400: #984e4e,
+    500: #803133,
+    600: #74292d,
+    700: #631e24,
+    800: #53111d,
+    900: #420214,
+    contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $dark-primary-text,
+    600: $dark-primary-text,
+    700: $dark-primary-text,
+    800: $dark-primary-text,
+    900: $dark-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $dark-primary-text,
+  )
+);
+
+$my-primary: mat.define-palette($ohio-green);
+$my-second: mat.define-palette($second-color, 200, 100, 400);
+
+$my-theme: mat.define-dark-theme($my-primary, $my-second);
+
+@include mat.all-component-themes($my-theme);
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
