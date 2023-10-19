@@ -72,7 +72,7 @@ $second-color: (
   )
 );
 
-$my-primary: mat.define-palette($ohio-green);
+$my-primary: mat.define-palette($ohio-green, 600, 900);
 $my-second: mat.define-palette($second-color, 200, 100, 400);
 
 $my-theme: mat.define-dark-theme($my-primary, $my-second);

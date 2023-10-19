@@ -1,1 +1,12 @@
-<p>members works!</p>
+<div class="row px-3">
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" *ngFor="let member of members; let i = index">
+        <!-- Displays all the Memebers -->
+        <mat-card id="memberCard" style="height: 14rem;" class="py-3 my-3" matRipple >
+            <img mat-card-img [src]="members[i].imageUrl">
+            <mat-card-footer class="pt-3">
+                <p class="fw-bold fs-6 text-center text-white">{{member.first + ' ' + member.last}}</p>
+            </mat-card-footer>
+        </mat-card>
+    </div>
+
+</div>

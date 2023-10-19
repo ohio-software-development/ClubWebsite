@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 
 @Component({
@@ -8,7 +8,8 @@ import { ThemePalette } from '@angular/material/core';
 })
 export class LayoutComponent {
 
-  links = ['Home', 'Current Projects', 'Past Projects', 'Members', 'Contact'];
-  linkPath = ['/', 'current', 'past', 'members', 'contact']
+  links = ['Home', 'Projects', 'Members', 'Contact'];
+  linkPath = ['/', 'projects', 'members', 'contact'];
   activeLink = this.links[0];
+
 }
