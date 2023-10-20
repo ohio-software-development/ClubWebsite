@@ -31,7 +31,7 @@ $ohio-green: (
     200: $dark-primary-text,
     300: $dark-primary-text,
     400: $dark-primary-text,
-    500: $dark-primary-text,
+    500: $light-primary-text,
     600: $light-primary-text,
     700: $light-primary-text,
     800: $light-primary-text,
@@ -80,4 +80,4 @@ $my-theme: mat.define-dark-theme($my-primary, $my-second);
 @include mat.all-component-themes($my-theme);
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: rgb(2, 4, 8); }

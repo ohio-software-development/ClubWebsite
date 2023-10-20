@@ -14,4 +14,8 @@ export class MembersComponent {
 
  constructor(private memberService: MembersService){}
 
+
+ onClick(){
+  window.open('https://github.com/KalebDemaline')
+ }
 }
