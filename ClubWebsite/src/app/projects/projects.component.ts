@@ -19,12 +19,13 @@ export class ProjectsComponent {
   constructor(private projectService: ProjectsService){}
 
   ELEMENT_DATA = this.projectService.projects.map((project) => ({
-    Name: project.name,
-    Language: 'Filler'
+    name: project.name,
+    language: project.language,
+    active: project.active
   }))
 
   dataSource = this.ELEMENT_DATA;
-  columnsToDisplay = ['Name', 'Language'];
+  columnsToDisplay = ['name', 'language', 'active'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandedElement: project | null = null;
 }
