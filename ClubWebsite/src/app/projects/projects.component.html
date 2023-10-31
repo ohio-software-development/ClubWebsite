@@ -39,6 +39,7 @@
                 <div  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                     <div class="">
                         <h1>Github Stuff</h1>
+                        <a [href]="element.githubUrl">{{element.githubUrl}}</a>
                     </div>
                 </div>
             </td>

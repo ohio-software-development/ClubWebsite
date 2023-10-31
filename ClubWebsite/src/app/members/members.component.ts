@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MembersService, member } from '../services/members.service';
 
+
 @Component({
   selector: 'app-members',
   templateUrl: './members.component.html',
