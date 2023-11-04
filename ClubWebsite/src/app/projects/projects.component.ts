@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectsService, project } from '../services/projects.service';
+import { ProjectsService, contributor, project } from '../services/projects.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Octokit } from 'octokit';
 import { MatTableDataSource } from '@angular/material/table';
-
-const octokit = new Octokit({
-  auth: "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"
-});
+import { HttpClient } from '@angular/common/http';
+import { switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-projects',
@@ -22,36 +19,40 @@ const octokit = new Octokit({
 })
 export class ProjectsComponent implements OnInit {
 
-
-  constructor(private projectService: ProjectsService) { }
+  constructor(private projectService: ProjectsService, private http: HttpClient) { }
 
   tableData = new MatTableDataSource<project>();
-  // ELEMENT_DATA = this.projectService.projects.map((project) => ({
-  //   name: project.name,
-  //   language: project.language,
-  //   active: project.active
-  // }));
+  contributors: contributor[] = [];
 
-  ngOnInit(): void {
-    octokit.request("GET /orgs/{org}/repos", {
-      org: 'ohio-software-development',
-    }).then((result) => {
-      console.log(result)
-      if (result) {
-        this.tableData.data = result.data.map((repos) => ({
-          name: repos.name,
-          description: repos.description ? repos.description : '',
-          language: repos.language ? repos.language : 'null',
-          githubUrl: repos.html_url ? repos.html_url : '',
-          active: true,
-        }))
-      }
-    })
+  async ngOnInit(): Promise<void> {
+    this.tableData.data = await this.projectService.cache;
   }
 
   dataSource = this.tableData;
   columnsToDisplay = ['name', 'language', 'active'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandedElement: project | null = null;
+
+  loadContributors(repo: project) {
+    this.contributors = [];
+    this.http.get(repo.contributors).pipe(
+      switchMap(async (res) => { //converts JSON data to array
+        return await Object.entries(res)
+      }),
+      switchMap(async (res) => { //converts 2d array to 1d and filters out numbers that are put in array
+        return await res.flat().filter((element) => isNaN(element))
+      }),
+      switchMap(async (res) => { //converts array to right data type
+        return await res.map((element) => ({
+          userName: element.login,
+          userUrl: element.html_url,
+          avatar: element.avatar_url
+        }))
+      }),
+      tap(async t => console.log(await t)),
+    ).subscribe((contributors: contributor[]) => {
+      this.contributors = contributors
+    })
+  }
 
 }
