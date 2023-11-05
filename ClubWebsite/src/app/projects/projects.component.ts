@@ -13,7 +13,7 @@ import { switchMap, tap } from 'rxjs';
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0' })),
       state('expanded', style({ height: '*' })),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+      transition('expanded <=> collapsed', animate('400ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
 })
@@ -23,6 +23,7 @@ export class ProjectsComponent implements OnInit {
 
   tableData = new MatTableDataSource<project>();
   contributors: contributor[] = [];
+  contributorLoading: boolean = false;
 
   async ngOnInit(): Promise<void> {
     this.tableData.data = await this.projectService.cache;
@@ -34,16 +35,14 @@ export class ProjectsComponent implements OnInit {
   expandedElement: project | null = null;
 
   loadContributors(repo: project) {
+    this.contributorLoading = true;
     this.contributors = [];
     this.http.get(repo.contributors).pipe(
-      switchMap(async (res) => { //converts JSON data to array
-        return await Object.entries(res)
-      }),
-      switchMap(async (res) => { //converts 2d array to 1d and filters out numbers that are put in array
-        return await res.flat().filter((element) => isNaN(element))
+      switchMap(async (res) => { //converts Object data to array
+        return await JSON.parse(JSON.stringify(res))
       }),
       switchMap(async (res) => { //converts array to right data type
-        return await res.map((element) => ({
+        return await res.map((element: { login: any; html_url: any; avatar_url: any; }) => ({
           userName: element.login,
           userUrl: element.html_url,
           avatar: element.avatar_url
@@ -52,6 +51,7 @@ export class ProjectsComponent implements OnInit {
       tap(async t => console.log(await t)),
     ).subscribe((contributors: contributor[]) => {
       this.contributors = contributors
+      this.contributorLoading = false
     })
   }
 

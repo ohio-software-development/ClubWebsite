@@ -4,7 +4,7 @@ import { APP_INITIALIZER } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { LayoutComponent } from './layout/layout.component';
 import { MaterialModule } from './material.module';
@@ -28,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     NoopAnimationsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [ProjectsService,
     {

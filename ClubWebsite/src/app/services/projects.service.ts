@@ -1,14 +1,12 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Octokit } from 'octokit';
 import { HttpClient } from '@angular/common/http';
-import { switchMap } from 'rxjs';
 
 export interface project {
   name: string,
   description: string,
   language: string,
   githubUrl: string,
-  // contributors: contributor[],
   contributors: string,
   active: boolean,
 }
@@ -20,7 +18,7 @@ export interface contributor {
 }
 
 const octokit = new Octokit({
-  auth: "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"
+  auth: "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"
 });
 
 @Injectable({
