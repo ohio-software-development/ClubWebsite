@@ -1,0 +1,33 @@
+name: Github Pages Deployment
+
+on:
+    push:
+      branches:
+        - master
+  
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+          
+        steps:
+          - name: Checkout Repository
+            uses: actions/checkout@v2
+          
+          - name: Set up Node.js
+            uses: actions/setup-node@v3
+            with:
+                node-version: 14
+          
+          - name: Install Dependencies
+            run: npm install
+          
+          - name: Build Angular App
+            run: npm run build --prod
+          
+          - name: Deploy to GitHub Pages
+            uses: JamesIves/github-pages-deploy-action@4.1.2
+            with:
+                branch: gh-pages # Deploy to the gh-pages branch
+                folder: dist/your-angular-app # Specify the Angular app build folder
+                cleanup: false # Keep the existing files in the gh-pages branch
+                token: ${{ secrets.GITHUB_TOKEN }}

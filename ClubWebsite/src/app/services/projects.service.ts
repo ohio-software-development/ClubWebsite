@@ -18,7 +18,7 @@ export interface contributor {
 }
 
 const octokit = new Octokit({
-  auth: "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"
+  auth: process.env['GITHUB_TOKEN']
 });
 
 @Injectable({
@@ -36,7 +36,7 @@ export class ProjectsService {
       org: 'ohio-software-development',
     }).then((result) => {
 
-      let intermediate = result.data.map((projects) => ({
+      return result.data.map((projects) => ({
         name: projects.name ? projects.name : '',
         description: projects.description ? projects.description : '',
         language: projects.language ? projects.language : 'null',
@@ -45,7 +45,6 @@ export class ProjectsService {
         active: true,
       }));
 
-      return intermediate
     })
   }
 
