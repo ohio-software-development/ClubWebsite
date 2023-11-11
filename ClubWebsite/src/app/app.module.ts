@@ -9,7 +9,6 @@ import { HomeComponent } from './home/home.component';
 import { LayoutComponent } from './layout/layout.component';
 import { MaterialModule } from './material.module';
 import { MembersComponent } from './members/members.component';
-import { ContactComponent } from './contact/contact.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ProjectsService } from './services/projects.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -20,8 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     LayoutComponent,
     MembersComponent,
-    ContactComponent,
-    ProjectsComponent,
+    ProjectsComponent
   ],
   imports: [
     BrowserModule,
