@@ -27,7 +27,7 @@ jobs:
             working-directory: ./ClubWebsite
 
           - name: Debug
-            run: echo "$(ls docs/club-website)"
+            run: echo "$(ls)"
           
           - name: Deploy to GitHub Pages
             uses: JamesIves/github-pages-deploy-action@4.1.2
