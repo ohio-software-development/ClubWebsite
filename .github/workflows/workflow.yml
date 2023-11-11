@@ -27,12 +27,12 @@ jobs:
             working-directory: ./ClubWebsite
 
           - name: Debug
-            run: echo "$(ls)"
+            run: echo "$(ls ClubWebsite/docs/club-website)"
           
           - name: Deploy to GitHub Pages
             uses: JamesIves/github-pages-deploy-action@4.1.2
             with:
                 branch: gh-pages # Deploy to the gh-pages branch
-                folder: docs/club-website # Specify the Angular app build folder
+                folder: ClubWebsite/docs/club-website # Specify the Angular app build folder
                 cleanup: false # Keep the existing files in the gh-pages branch
                 token: ${{ secrets.GITHUB_TOKEN }}
