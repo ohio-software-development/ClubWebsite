@@ -25,6 +25,9 @@ jobs:
           - name: Build Angular App
             run: npm run build --prod
             working-directory: ./ClubWebsite
+
+          - name: Debug
+            run: echo "$(ls docs/club-website)"
           
           - name: Deploy to GitHub Pages
             uses: JamesIves/github-pages-deploy-action@4.1.2
