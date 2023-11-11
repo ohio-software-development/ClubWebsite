@@ -12,6 +12,8 @@ jobs:
         steps:
           - name: Checkout Repository
             uses: actions/checkout@v4
+            with:
+                path: ./ClubWebsite
           
           - name: Set up Node.js
             uses: actions/setup-node@v4
@@ -20,7 +22,6 @@ jobs:
           
           - name: Install Dependencies
             run: npm install
-            working-directory: ./ClubWebsite
           
           - name: Build Angular App
             run: npm run build --prod
