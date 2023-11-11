@@ -30,6 +30,6 @@ jobs:
             uses: JamesIves/github-pages-deploy-action@4.1.2
             with:
                 branch: gh-pages # Deploy to the gh-pages branch
-                folder: dist/your-angular-app # Specify the Angular app build folder
+                folder: docs/club-website # Specify the Angular app build folder
                 cleanup: false # Keep the existing files in the gh-pages branch
                 token: ${{ secrets.GITHUB_TOKEN }}
