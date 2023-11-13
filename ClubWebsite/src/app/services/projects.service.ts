@@ -18,7 +18,7 @@ export interface contributor {
 }
 
 const octokit = new Octokit({
-  auth: process.env['API_TOKEN']
+  auth: `${process.env['API_TOKEN']}`
 });
 
 @Injectable({
