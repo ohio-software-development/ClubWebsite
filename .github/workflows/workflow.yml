@@ -25,6 +25,7 @@ jobs:
           - name: Build Angular App
             run: npm run build-prod --prod
             working-directory: ./ClubWebsite
+            env: ${{ secrets.GITHUB_TOKEN }}
 
           - name: Debug
             run: echo "$(ls ClubWebsite/docs/club-website)"
